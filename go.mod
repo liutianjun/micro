@@ -34,6 +34,7 @@ require (
 	github.com/juju/fslock v0.0.0-20160525022230-4d5c94c67b4b
 	github.com/kr/pretty v0.2.0
 	github.com/kr/text v0.2.0 // indirect
+	github.com/micro/micro/plugin/etcd/v3 v3.0.0-20210212150836-11aa2183c16b
 	github.com/miekg/dns v1.1.27
 	github.com/minio/minio-go/v7 v7.0.5
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect

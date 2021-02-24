@@ -19,6 +19,7 @@ package server
 import (
 	"context"
 	"crypto/tls"
+	"github.com/micro/micro/plugin/etcd/v3"
 	"sync"
 	"time"
 
@@ -30,7 +31,6 @@ import (
 	"github.com/micro/micro/v3/service/broker"
 	"github.com/micro/micro/v3/service/broker/memory"
 	"github.com/micro/micro/v3/service/registry"
-	"github.com/micro/micro/v3/service/registry/mdns"
 )
 
 type Options struct {
@@ -85,7 +85,8 @@ func newOptions(opt ...Option) Options {
 	}
 
 	if opts.Registry == nil {
-		opts.Registry = mdns.NewRegistry()
+		opts.Registry = etcd.NewRegistry()
+		//opts.Registry = mdns.NewRegistry()
 	}
 
 	if opts.Transport == nil {

@@ -16,10 +16,10 @@ package router
 
 import (
 	"context"
+	"github.com/micro/micro/plugin/etcd/v3"
 
 	"github.com/google/uuid"
 	"github.com/micro/micro/v3/service/registry"
-	"github.com/micro/micro/v3/service/registry/mdns"
 )
 
 // Options are router options
@@ -87,8 +87,9 @@ func DefaultOptions() Options {
 	return Options{
 		Id:       uuid.New().String(),
 		Network:  DefaultNetwork,
-		Registry: mdns.NewRegistry(),
-		Context:  context.Background(),
+		Registry: etcd.NewRegistry(),
+		//Registry: mdns.NewRegistry(),
+		Context: context.Background(),
 	}
 }
 

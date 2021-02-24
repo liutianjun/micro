@@ -5,6 +5,7 @@ package profile
 
 import (
 	"fmt"
+	"github.com/micro/micro/plugin/etcd/v3"
 	"os"
 	"path/filepath"
 
@@ -21,7 +22,6 @@ import (
 	"github.com/micro/micro/v3/service/logger"
 	"github.com/micro/micro/v3/service/model"
 	"github.com/micro/micro/v3/service/registry"
-	"github.com/micro/micro/v3/service/registry/mdns"
 	"github.com/micro/micro/v3/service/registry/memory"
 	"github.com/micro/micro/v3/service/router"
 	k8sRouter "github.com/micro/micro/v3/service/router/kubernetes"
@@ -95,7 +95,8 @@ var Local = &Profile{
 		SetupConfigSecretKey(ctx)
 		config.DefaultConfig, _ = storeConfig.NewConfig(microStore.DefaultStore, "")
 		SetupBroker(memBroker.NewBroker())
-		SetupRegistry(mdns.NewRegistry())
+		SetupRegistry(etcd.NewRegistry())
+		//SetupRegistry(mdns.NewRegistry())
 		SetupJWT(ctx)
 
 		// set the store in the model

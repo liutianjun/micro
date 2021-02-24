@@ -20,6 +20,7 @@ package nats
 import (
 	"context"
 	"errors"
+	"github.com/micro/micro/plugin/etcd/v3"
 	"strings"
 	"sync"
 
@@ -297,7 +298,8 @@ func NewBroker(opts ...broker.Option) broker.Broker {
 		// Default codec
 		Codec:    Marshaler{},
 		Context:  context.Background(),
-		Registry: mdns.NewRegistry(),
+		Registry: etcd.NewRegistry(),
+		//Registry: mdns.NewRegistry(),
 	}
 
 	n := &natsBroker{

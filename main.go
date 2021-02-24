@@ -4,6 +4,8 @@ package main
 
 import (
 	"github.com/micro/micro/v3/cmd"
+	"log"
+	"os"
 
 	// internal packages
 	_ "github.com/micro/micro/v3/internal/usage"
@@ -15,5 +17,8 @@ import (
 )
 
 func main() {
+	log.SetOutput(os.Stdout)
+	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
+
 	cmd.Run()
 }

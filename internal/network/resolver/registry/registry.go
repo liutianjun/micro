@@ -31,7 +31,8 @@ type Resolver struct {
 func (r *Resolver) Resolve(name string) ([]*resolver.Record, error) {
 	reg := r.Registry
 	if reg == nil {
-		reg = mdns.NewRegistry()
+		reg = etcd.NewRegistry()
+		//reg = mdns.NewRegistry()
 	}
 
 	services, err := reg.GetService(name)

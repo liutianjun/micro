@@ -17,10 +17,10 @@
 package router
 
 import (
+	"github.com/micro/micro/plugin/etcd/v3"
 	"github.com/micro/micro/v3/internal/api/resolver"
 	"github.com/micro/micro/v3/internal/api/resolver/vpath"
 	"github.com/micro/micro/v3/service/registry"
-	"github.com/micro/micro/v3/service/registry/mdns"
 )
 
 type Options struct {
@@ -34,7 +34,8 @@ type Option func(o *Options)
 func NewOptions(opts ...Option) Options {
 	options := Options{
 		Handler:  "meta",
-		Registry: mdns.NewRegistry(),
+		Registry: etcd.NewRegistry(),
+		//Registry: mdns.NewRegistry(),
 	}
 
 	for _, o := range opts {

@@ -19,12 +19,12 @@ package grpc
 import (
 	"context"
 	"crypto/tls"
+	"github.com/micro/micro/plugin/etcd/v3"
 	"net"
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/micro/micro/v3/internal/codec"
 	"github.com/micro/micro/v3/service/broker/memory"
-	"github.com/micro/micro/v3/service/registry/mdns"
 	"github.com/micro/micro/v3/service/server"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/encoding"
@@ -120,10 +120,11 @@ func MaxSendMsgSize(s int) server.Option {
 
 func newOptions(opt ...server.Option) server.Options {
 	opts := server.Options{
-		Codecs:           make(map[string]codec.NewCodec),
-		Metadata:         map[string]string{},
-		Broker:           memory.NewBroker(),
-		Registry:         mdns.NewRegistry(),
+		Codecs:   make(map[string]codec.NewCodec),
+		Metadata: map[string]string{},
+		Broker:   memory.NewBroker(),
+		Registry: etcd.NewRegistry(),
+		//Registry:         mdns.NewRegistry(),
 		Address:          server.DefaultAddress,
 		Name:             server.DefaultName,
 		Id:               server.DefaultId,

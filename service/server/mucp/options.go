@@ -17,10 +17,10 @@
 package mucp
 
 import (
+	"github.com/micro/micro/plugin/etcd/v3"
 	"github.com/micro/micro/v3/internal/codec"
 	thttp "github.com/micro/micro/v3/internal/network/transport/http"
 	"github.com/micro/micro/v3/service/broker/memory"
-	"github.com/micro/micro/v3/service/registry/mdns"
 	"github.com/micro/micro/v3/service/server"
 )
 
@@ -41,7 +41,8 @@ func newOptions(opt ...server.Option) server.Options {
 	}
 
 	if opts.Registry == nil {
-		opts.Registry = mdns.NewRegistry()
+		opts.Registry = etcd.NewRegistry()
+		//opts.Registry = mdns.NewRegistry()
 	}
 
 	if opts.Transport == nil {
